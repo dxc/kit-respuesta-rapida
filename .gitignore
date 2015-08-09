@@ -1,0 +1,9 @@
+**__pycache__**
+*.pyc
+*.pyo
+**/migrations/**
+*~
+db.sqlite3
+.project
+**/.settings/**
+.pydevproject

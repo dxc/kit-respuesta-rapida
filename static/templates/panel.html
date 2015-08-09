@@ -1,0 +1,27 @@
+{% load staticfiles %}
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/block.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/default.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css'%}"/>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <title>Admin Panel</title>
+</head>
+<body>
+<div class="container">
+    <h1>¿Qué hacer?</h1>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <a href="wizard.html" class="btn-primary btn-lg">Crear nueva catástrofe</a>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <a href="edit_catastrophe.html" class="btn-danger btn-lg">Modificar catástrofe</a>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

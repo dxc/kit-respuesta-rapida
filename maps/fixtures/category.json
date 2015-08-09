@@ -1,0 +1,182 @@
+[
+    {
+        "model": "maps.Catastrophes",
+        "pk": 1,
+        "fields": {
+            "name":"La Serena",
+            "latitud":-29.9,
+            "longitud":-71.25,
+            "fecha":"2014-09-11",
+            "description":"Catastrofe en la Serena. Tornado brígido"
+        }
+    },
+    {
+        "model": "maps.Catastrophes",
+        "pk": 2,
+        "fields": {
+            "name":"Calbuco",
+            "latitud":-41.77,
+            "longitud":-73.134,
+            "fecha":"2014-09-11",
+            "description":"Volcan explota"
+        }
+    },
+    {
+        "model": "maps.Catastrophes",
+        "pk": 3,
+        "fields": {
+            "name":"Santiago",
+            "latitud":-33.45,
+            "longitud":-70.666,
+            "fecha":"2014-09-11",
+            "description" : "Esta es una descripción de prueba. La idea es ocupar las 140 letras disponibles, y así generar un diseño con la descripción mas larga posibl"
+        }
+    },
+    {
+        "model":"maps.Style",
+        "pk":1,
+        "fields":{
+            "name":"cat0"
+        }
+
+    },
+    {
+        "model":"maps.Style",
+        "pk":2,
+        "fields":{
+            "name":"cat1"
+        }
+
+    },
+    {
+        "model":"maps.Style",
+        "pk":3,
+        "fields":{
+            "name":"cat2"
+        }
+
+    },
+    {
+        "model":"maps.Style",
+        "pk":4,
+        "fields":{
+            "name":"cat3"
+        }
+
+    },
+    {
+        "model":"maps.Style",
+        "pk":5,
+        "fields":{
+            "name":"cat4"
+        }
+
+    },
+    {
+        "model": "maps.Category",
+        "pk": 1,
+        "fields": {
+            "category": "Categoria1",
+            "style": 1,
+            "catastrophe": 1
+
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 2,
+        "fields": {
+            "category": "Categoria2",
+            "style": 2,
+            "catastrophe": 1
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 3,
+        "fields": {
+            "category": "Categoria3",
+            "style": 3,
+            "catastrophe": 1
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 4,
+        "fields": {
+            "category": "Categoria4",
+            "style": 4,
+            "catastrophe": 1
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 5,
+        "fields": {
+            "category": "Categoria5",
+            "style": 5,
+            "catastrophe": 1
+        }
+    },
+    {
+        "model": "maps.Category",
+        "pk": 6,
+        "fields": {
+            "category": "Categoria1",
+            "style": 1,
+            "catastrophe": 2
+
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 7,
+        "fields": {
+            "category": "Categoria2",
+            "style": 2,
+            "catastrophe": 2
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 8,
+        "fields": {
+            "category": "Categoria3",
+            "style": 3,
+            "catastrophe": 2
+        }
+    },
+	{
+        "model": "maps.Category",
+        "pk": 9,
+        "fields": {
+            "category": "Joseyto",
+            "style": 3,
+            "catastrophe": 3
+        }
+    },
+    {
+        "model": "maps.Mark",
+        "pk": 1,
+        "fields": {
+            "latitud": -41.77,
+            "longitud": -73.134,
+            "category": 1,
+            "description": "asdasdsad",
+            "catastrophe": 1
+        }
+    },
+    {
+        "model": "maps.Mark",
+        "pk": 2,
+        "fields": {
+            "latitud": -41.77,
+            "longitud": -73.134,
+            "category": 6,
+            "description": "asdasdsad",
+            "catastrophe": 2
+        }
+    }
+
+
+]	

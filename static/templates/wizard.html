@@ -1,0 +1,265 @@
+{% load staticfiles %}
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'js/leaflet.css'%}">
+    <link rel="stylesheet" href="{% static 'css/block.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/default.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css'%}"/>
+    <script src="{% static 'js/leaflet.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'js/MarkerCluster.css'%}"/>
+    <link rel="stylesheet" href="{% static 'js/MarkerCluster.Default.css'%}"/>
+    <script src="{% static 'js/leaflet.markercluster.js' %}"></script>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/map.js' %}"></script>
+    <script>
+        $(function () {
+            var mapId = "idmap";
+            var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                maxZoom: 18
+            }), latlng = L.latLng(-33.45, -70.666);
+            var map = L.map(mapId, {
+                center: latlng,
+                zoom: 14,
+                layers: [tiles]
+            });
+
+            var marker = L.marker([1,1]);
+
+            map.on('click', function (e) {
+                this.removeLayer(marker);
+                this.panTo([e.latlng.lat, e.latlng.lng]);
+                marker = L.marker([e.latlng.lat, e.latlng.lng]);
+                marker.addTo(map);
+                $("#zoom").val(e.target.getZoom());
+                $("#latitud").val(e.latlng.lat);
+                $("#longitud").val(e.latlng.lng);
+
+            });
+        });
+
+    </script>
+    <script>
+    function changeTest(a) {
+       a.className ="form-control input-sm "+a.options[a.selectedIndex].className;
+       return true;
+    }
+    </script>
+    <script>
+        $(document).ready(function () {
+        $(".active").removeClass("active");
+        $("#2").addClass("active");
+
+
+        function updateElementIndex(el, prefix, ndx) {
+            var id_regex = new RegExp('(' + prefix + '-\\d+-)');
+            var replacement = prefix + '-' + ndx + '-';
+            if ($(el).attr("for")) $(el).attr("for", $(el).attr("for").replace(id_regex, replacement));
+            if (el.id) el.id = el.id.replace(id_regex, replacement);
+            if (el.name) el.name = el.name.replace(id_regex, replacement);
+        }
+
+        function deleteForm(btn, prefix) {
+            var formCount = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
+
+            if (formCount > 1) {
+                // Delete the item/form
+                $(btn).parents('.item').remove();
+                var forms = $('.item'); // Get all the forms
+                // Update the total number of forms (1 less than before)
+                $('#id_' + prefix + '-TOTAL_FORMS').val(forms.length);
+
+                var i = 0;
+                // Go through the forms and set their indices, names and IDs
+                for (formCount = forms.length; i < formCount; i++) {
+                    $(forms.get(i)).children().children().children().each(function () {
+                        updateElementIndex(this, prefix, i);
+                    });
+                }
+            }
+            else {
+                alert("Debes agregar al menos un destino!");
+            }
+            return false;
+        }
+
+        function addForm(btn, prefix) {
+            var formCount = parseInt($('#id_' + prefix + '-TOTAL_FORMS').val());
+            console.log(formCount)
+
+            // You can only submit a maximum of 20 forms
+            if (formCount < 10) {
+                // Clone a form (without event handlers) from the first form
+                var row = $(".item:first").clone(true);
+                // Insert it after the last form
+                $(row).children().children().children()[1].className = "form-control input-sm ";
+                $(row).removeAttr('id').hide().insertAfter(".item:last").slideDown(300);
+
+                // Remove the bits we don't want in the new row/form
+                // e.g. error messages
+                $(".errorlist", row).remove();
+                $(row).children().removeClass('error');
+                // Relabel/rename all the relevant bits
+				$(row).children().children().children().each(function () {
+                    updateElementIndex(this, prefix, formCount);
+                    if ($(this).attr('type') == 'text')
+                        $(this).val('');
+                });
+                $(row).children().children().each(function () {
+                    updateElementIndex(this, prefix, formCount);
+                    if ($(this).attr('type') == 'text')
+                        $(this).val('');
+                });
+
+                // Add an event handler for the delete item/form link
+                $(row).find('.delete').click(function () {
+                    return deleteForm(this, prefix);
+                });
+                //citySelector = $(row).find('.city')[0];
+                //citySelector.options.length = 0;
+                //citySelector.options[0] = new Option("Seleccione Ciudad", "");
+                //var aux = "id_destinations-"+formCount+"-dias_ayuda_viaje";
+
+                //document.getElementById(aux).style.display = "none";
+                // Update the total form count;
+                $('#id_' + prefix + '-TOTAL_FORMS').val(formCount + 1);
+                //$(".datepicker").datepicker();
+
+            } // End if
+            else {
+                alert("Lo siento, no más de 20 destinos.");
+            }
+            return false;
+        }
+
+        // Register the click event handlers
+        $("#add_category").click(function () {
+            return addForm(this, 'category');
+        });
+
+        $(".delete").click(function () {
+            return deleteForm(this, 'category');
+        });});
+    </script>
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1>Crear nueva catástrofe</h1>
+
+
+
+
+
+
+		<form class="form-horizontal" method="post">
+      {% csrf_token %}
+      <div class="row">
+        {{ wizardform.zoom }}
+      </div>
+      <div class="row">
+					<div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span>Catástrofe</span>
+              </div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-8">
+
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="nombrecat">Nombre</label>
+                        <div class="col-sm-9">
+                          {{wizardform.name}}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="datecat">Fecha</label>
+                        <div class="col-sm-9">
+                          {{wizardform.date}}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="description">Descripción</label>
+                        <div class="col-sm-9">
+                          {{wizardform.description}}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="latitud">Latitud</label>
+                        <div class="col-sm-9">
+                          {{wizardform.latitud}}
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="control-label col-sm-3" for="longitud">Longitud</label>
+                        <div class="col-sm-9">
+                          {{wizardform.longitud}}
+                        </div>
+                      </div>
+
+                  </div>
+                  <div id="idmap" class="leaflet-container leaflet-fade-anim col-md-4"
+                        style="float: left; width: 350px; height: 180px; border: 1px solid rgb(204, 204, 204); padding-left: 25%; position: relative;">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <br>
+
+      <div class="row">
+					<div class="col-sm-12">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <span>Categorías</span>
+              </div>
+              <div class="panel-body">
+                {{ catform.management_form }}
+                {% for form in catform %}
+                {{ form.id }}
+                <div class="col-md-12 row item">
+                  <div class="form-group col-md-6">
+                    <label class="col-md-3 control-label text-right">Nombre</label>
+                    <div class="col-md-9">
+                      {{ form.name }}
+                    </div>
+                  </div>
+                  <div class="form-group col-md-6">
+                    <label class="col-md-3 control-label">Color</label>
+                    <div class="col-md-6">
+                      {{ form.style }}
+                    </div>
+                    <div>
+                        <div align="right"><a class="delete" href="#">Borrar</a></div>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+                <div class="row">
+                  <div id="add_category" class="col-md-offset-9 col-sm-3">
+                    <button class="btn btn-info" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                    <label class="control-label">Agregar Categoría</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+			<!-- Button -->
+			<div class="form-group">
+			  <label class="col-md-4 control-label" for="enviar"></label>
+			  <div class="col-md-4">
+				<button id="enviar" type="submit" name="enviar" class="btn btn-info">Enviar</button>
+				<button id="cerrar" name="cerrar" type="button" class="btn btn-info" onclick="">cerrar</button>
+			  </div>
+			</div>
+        </form>
+
+	</div>
+    </div>
+</div>
+</body>
+</html>
