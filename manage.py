@@ -3,7 +3,7 @@ import os
 import sys
 
 if __name__ == "__main__":
-    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "proyecto_agilidad.settings")
+    os.environ.setdefault("DJANGO_SETTINGS_MODULE", "kit-rr.settings")
 
     from django.core.management import execute_from_command_line
 
