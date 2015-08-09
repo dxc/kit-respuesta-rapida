@@ -1,5 +1,5 @@
 """
-Django settings for kit-rr project.
+Django settings for kit_rr project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -49,9 +49,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'kit-rr.urls'
+ROOT_URLCONF = 'kit_rr.urls'
 
-WSGI_APPLICATION = 'kit-rr.wsgi.application'
+WSGI_APPLICATION = 'kit_rr.wsgi.application'
 
 
 # Database
