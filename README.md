@@ -12,7 +12,7 @@ Software:
 #############################
 
 
-1.- Download last version of the code
+1.- Download the latest version of the code
 
 2.- Create database
    > python manage.py syncdb
