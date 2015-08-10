@@ -1,0 +1,46 @@
+{% load staticfiles %}
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static 'css/block.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/default.css'%}"/>
+    <link rel="stylesheet" href="{% static 'css/bootstrap/css/bootstrap.min.css'%}"/>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <title></title>
+</head>
+<body>
+<div class="container">
+    <h1>Catástrofes</h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="col-md-2 text-center">Nombre</th>
+        <th class="col-md-6 text-center">Descripción</th>
+        <th class="col-md-2 text-center">Fecha</th>
+        <th class="col-md-1 text-center"></th>
+        <th class="col-md-1 text-center"></th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for cat in catastrophes %}
+            <tr>
+                <td class="text-center">{{ cat.name }}</td>
+                <td>{{ cat.description }}</td>
+                <td class="text-center">{{ cat.fecha }}</td>
+                <td class="text-center"><a href="edit_cat?idCat={{ cat.pk }}">Modificar</a></td>
+                <td class="text-center"><a>Eliminar</a></td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+
+
+
+
+
+
+</div>
+</body>
+</html>

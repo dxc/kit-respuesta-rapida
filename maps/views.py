@@ -146,3 +146,54 @@ def wizard2(request):
             return render_to_response("panel.html", locals(), context_instance = RequestContext(request))
 
     return render_to_response("edit_catastrophe.html", locals(), context_instance = RequestContext(request))
+
+def list_catastrophes(request):
+    catastrophes = Catastrophes.objects.all()
+    return render_to_response("catastrophes.html", locals(), context_instance = RequestContext(request))
+
+def edit_cat(request):
+    idCatastrophe = request.GET["idCat"]
+    catastrophe = Catastrophes.objects.get(pk=int(idCatastrophe))
+    categories = Category.get_by_catastrophe(catastrophe)
+    catastropheForm = WizardForm(request.POST or None, prefix="catastrophe")
+    catform = CategoryFormSet2(request.POST or None, prefix="category")
+
+    if request.method == "POST":
+        print(catastropheForm.is_valid())
+        print(catform.is_valid())
+        print(catastropheForm.errors)
+        print(request.POST)
+        if catastropheForm.is_valid() and catform.is_valid():
+            name = catastropheForm.cleaned_data['name']
+            date = catastropheForm.cleaned_data['date']
+            description = catastropheForm.cleaned_data['description']
+            latitud = catastropheForm.cleaned_data['latitud']
+            longitud = catastropheForm.cleaned_data['longitud']
+            zoom = catastropheForm.cleaned_data['zoom']
+
+            catastrophe.name = name
+            catastrophe.fecha = date
+            catastrophe.latitud = latitud
+            catastrophe.longitud = longitud
+            catastrophe.description = description
+            catastrophe.save()
+
+            pkeys = Category.get_pk_categories(Category,catastrophe)
+            for form in catform:
+                    print(form.cleaned_data)
+                    catName = form.cleaned_data['name']
+                    categoryStyle = form.cleaned_data['style']
+                    key = form.cleaned_data['key']
+                    pkeys.remove(int(key))
+                    category_update = Category.objects.filter(pk=key)[0]
+                    category_update.category=catName
+                    category_update.style=categoryStyle
+                    category_update.catastrophe=catastrophe
+                    category_update.save()
+            for i in pkeys:
+                Category.objects.get(pk=i).delete()
+            return HttpResponseRedirect("catastrophes")
+
+
+
+    return render_to_response("edit_cat.html", locals(), context_instance = RequestContext(request))
