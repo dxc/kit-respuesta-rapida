@@ -27,7 +27,7 @@
             <tr>
                 <td class="text-center">{{ cat.name }}</td>
                 <td>{{ cat.description }}</td>
-                <td class="text-center">{{ cat.fecha }}</td>
+                <td class="text-center">{{ cat.fecha|date }}</td>
                 <td class="text-center"><a href="edit_cat?idCat={{ cat.pk }}">Modificar</a></td>
                 <td class="text-center"><a>Eliminar</a></td>
             </tr>

@@ -5,6 +5,7 @@ from django.utils.html import format_html
 from django.utils.encoding import force_text
 from django.utils.safestring import mark_safe
 import datetime
+from kit_rr import settings
 from .models import *
 
 
