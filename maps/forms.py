@@ -1,3 +1,4 @@
+# coding=utf-8
 from django import forms
 from django.forms import formset_factory
 from django.utils.html import format_html
