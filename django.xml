@@ -1,0 +1,6 @@
+<uwsgi>
+	<socket>127.0.0.1:3031</socket>
+	<chdir>.</chdir>
+	<pythonpath>../../../venvdir/bin</pythonpath>
+	<module>wsgi</module>
+</uwsgi>
