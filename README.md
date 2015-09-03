@@ -60,3 +60,12 @@ Con las instruccciones para django 1.7 que salen en los comentarios, reemplazar 
 8.- En Menu/WEB/Actions clickear el botón RELOAD user.pythonanywhere.com
 
 9.- Todo está listo, ahora solo dirigirse a user.pythonanywhere.com
+
+
+
+# Comandos WSGI
+
+wsgi -x django.xml
+ctrl+z
+bg
+exit
