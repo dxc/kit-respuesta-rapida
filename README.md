@@ -66,6 +66,9 @@ Con las instruccciones para django 1.7 que salen en los comentarios, reemplazar 
 # Comandos WSGI
 
 wsgi -x django.xml
+
 ctrl+z
+
 bg
+
 exit
