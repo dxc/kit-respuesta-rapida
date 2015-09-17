@@ -98,8 +98,6 @@ function MapHandler(marcadores, latitud, longitud, map, mapId, categories) {
 	this.mapId = mapId;
 	this.markers = L.markerClusterGroup();
 	this.categories = categories;
-	console.log(marcadores);
-	console.log(categories);
 	this.loadAll = function(placeHolder, marcadores) {
 		placeHolder.markers.clearLayers();
 		for (var i = 0; i < placeHolder.marcadores.length; i++) {
