@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'mbl$i_m2j1u)8%&_80-nj&(s)@qth)6#4#rm#ktu!pxhgs5u-2'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -53,7 +53,7 @@ ROOT_URLCONF = 'kit_rr.urls'
 
 WSGI_APPLICATION = 'kit_rr.wsgi.application'
 
-X_FRAME_OPTIONS = 'ALLOWALL'
+X_FRAME_OPTIONS = 'ALLOW-FROM http://www.chileayuda.com'
 
 
 # Database
