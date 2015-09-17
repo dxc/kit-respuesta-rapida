@@ -7,13 +7,13 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^wizard','maps.views.wizard',name = 'wizard'),
-    url(r'^edit_catastrophe','maps.views.wizard2',name = 'wizard2'),
-    url(r'^panel','maps.views.panel',name = 'panel'),
+    #url(r'^wizard','maps.views.wizard',name = 'wizard'),
+    #url(r'^edit_catastrophe','maps.views.wizard2',name = 'wizard2'),
+    #url(r'^panel','maps.views.panel',name = 'panel'),
     url(r'^mapa', 'maps.views.mapa', name='mapa'),
     url(r'^home', 'maps.views.home', name='home'),
-    url(r'^catastrophes', 'maps.views.list_catastrophes', name='catastrophes'),
-    url(r'^edit_cat', 'maps.views.edit_cat', name='edit_cat'),
+    #url(r'^catastrophes', 'maps.views.list_catastrophes', name='catastrophes'),
+    #url(r'^edit_cat', 'maps.views.edit_cat', name='edit_cat'),
     url(r'^$', 'maps.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
 
