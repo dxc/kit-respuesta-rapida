@@ -53,7 +53,7 @@ ROOT_URLCONF = 'kit_rr.urls'
 
 WSGI_APPLICATION = 'kit_rr.wsgi.application'
 
-X_FRAME_OPTIONS = 'ALLOW-FROM http://www.chileayuda.com'
+X_FRAME_OPTIONS = 'ALLOWALL'
 
 
 # Database
