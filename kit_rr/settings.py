@@ -53,6 +53,8 @@ ROOT_URLCONF = 'kit_rr.urls'
 
 WSGI_APPLICATION = 'kit_rr.wsgi.application'
 
+X_FRAME_OPTIONS = 'ALLOW-FROM http://www.chileayuda.com'
+
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
