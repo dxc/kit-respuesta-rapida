@@ -205,7 +205,7 @@ function init_map(serializedMarks, serializedCategories, serializedCatastrophe) 
 	}), latlng = L.latLng(parsedCatastrophe.fields.latitud, parsedCatastrophe.fields.longitud);
 	var map = L.map(mapId, {
 		center : latlng,
-		zoom : 15,
+		zoom : 13,
 		layers : [ tiles ]
 	});
 	var mapHandler = new MapHandler(parsedMarks,
